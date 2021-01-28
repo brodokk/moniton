@@ -12,8 +12,8 @@ from moniton.jobs.common import Job
 
 class UpdateDate(Job):
 
-    def __init__(self, stdscr, color):
-        super().__init__(stdscr, color)
+    def __init__(self, stdscr):
+        super().__init__(stdscr)
         schedule.every(1).seconds.do(self._run_threaded)
 
     def _job(self):

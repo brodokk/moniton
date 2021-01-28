@@ -36,15 +36,20 @@ class Color:
         curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_BLACK)
         self.white_on_black = curses.color_pair(5)
 
-
 class Config:
 
-    def __init__(self, dictionary):
+    def __init__(self, cls=False, dictionary={}):
         def _traverse(key, element):
             if isinstance(element, dict):
-                return key, Config(element)
+                return key, Config(dictionary=element)
             else:
                 return key, element
+
+        if cls:
+            cls_name = cls.__class__.__name__
+            if cls_name in config:
+                job_config = config[cls_name]
+                dictionary = job_config
 
         objd = dict(_traverse(k, v) for k, v in dictionary.items())
         self.__dict__.update(objd)

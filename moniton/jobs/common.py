@@ -3,6 +3,7 @@ import threading
 from moniton.config import (
     config,
     Config,
+    Color,
 )
 
 
@@ -27,12 +28,10 @@ class Cursor:
 
 class Job:
 
-    def __init__(self, stdscr, color):
-        self.color = color
+    def __init__(self, stdscr):
+        self.color = Color()
         self.cursor = Cursor(0, 0)
-        if self.__class__.__name__ in config:
-            job_config = config[self.__class__.__name__]
-            self.config = Config(job_config)
+        self.config = Config(self)
         self.stdscr = stdscr
 
     def _run_threaded(self):

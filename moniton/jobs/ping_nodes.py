@@ -33,8 +33,8 @@ from moniton.jobs.common import (
 
 class PingNodes(Job):
 
-    def __init__(self, stdscr, color):
-        super().__init__(stdscr, color)
+    def __init__(self, stdscr):
+        super().__init__(stdscr)
         self.cursor = Cursor(3, 0)
         schedule.every(1).seconds.do(self.update_state)
         self.retry = 15 * len(self.config.nodes)

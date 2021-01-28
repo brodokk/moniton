@@ -5,24 +5,20 @@ import time
 from termcolor import colored
 
 import moniton.jobs
-from moniton.config import (
-    Color,
-)
+
 from moniton.utils import launch_splash_screen
 
 def draw(stdscr):
     k = 0
 
-    color = Color()
-
     stdscr.clear()
     curses.curs_set(0)
     stdscr.nodelay(1)
 
-    splash_screen = launch_splash_screen(color)
+    splash_screen = launch_splash_screen()
 
     for job in moniton.jobs.get_jobs():
-        job(stdscr, color)
+        job(stdscr)
 
     splash_screen.refresh()
     time.sleep(4)

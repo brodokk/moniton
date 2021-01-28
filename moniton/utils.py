@@ -1,7 +1,11 @@
 import curses
 import time
 
-def launch_splash_screen(color):
+from moniton.config import (
+    Color,
+)
+
+def launch_splash_screen():
     logo = [
         "                          :*                      ",
         "                   %#:     ##*                    ",
@@ -56,7 +60,7 @@ def launch_splash_screen(color):
             line + 1,
             1,
             logo[line],
-            color.cyan_on_black
+            Color().cyan_on_black
         )
         splash_screen.refresh()
         time.sleep(0.05)
@@ -69,7 +73,7 @@ def launch_splash_screen(color):
         (len(logo) + 10) // 2,
         splash_screen_col // 2 - len(text) // 2,
         text,
-        color.cyan_on_black
+        Color().cyan_on_black
     )
 
     return splash_screen
